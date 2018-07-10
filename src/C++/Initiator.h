@@ -52,18 +52,18 @@ class Initiator
 {
 public:
   Initiator( Application&, MessageStoreFactory&,
-             const SessionSettings& ) throw( ConfigError );
+             const SessionSettings& ) QF_THROW( ConfigError );
   Initiator( Application&, MessageStoreFactory&,
-             const SessionSettings&, LogFactory& ) throw( ConfigError );
+             const SessionSettings&, LogFactory& ) QF_THROW( ConfigError );
 
   virtual ~Initiator();
 
   /// Start initiator.
-  void start() throw ( ConfigError, RuntimeError );
+  void start() QF_THROW( ConfigError, RuntimeError );
   /// Block on the initiator
-  void block() throw ( ConfigError, RuntimeError );
+  void block() QF_THROW( ConfigError, RuntimeError );
   /// Poll the initiator
-  bool poll( double timeout = 0.0 ) throw ( ConfigError, RuntimeError );
+  bool poll( double timeout = 0.0 ) QF_THROW( ConfigError, RuntimeError );
 
   /// Stop initiator.
   void stop( bool force = false );
@@ -104,12 +104,12 @@ protected:
   void connect();
 
 private:
-  void initialize() throw ( ConfigError );
+  void initialize() QF_THROW( ConfigError );
 
   /// Implemented to configure acceptor
-  virtual void onConfigure( const SessionSettings& ) throw ( ConfigError ) {};
+  virtual void onConfigure( const SessionSettings& ) QF_THROW( ConfigError ) {};
   /// Implemented to initialize initiator
-  virtual void onInitialize( const SessionSettings& ) throw ( RuntimeError ) {};
+  virtual void onInitialize( const SessionSettings& ) QF_THROW( RuntimeError ) {};
   /// Implemented to start connecting to targets.
   virtual void onStart() = 0;
   /// Implemented to connect and poll for events.

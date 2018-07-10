@@ -33,14 +33,14 @@ namespace FIX
 {
 SocketAcceptor::SocketAcceptor( Application& application,
                                 MessageStoreFactory& factory,
-                                const SessionSettings& settings ) throw( ConfigError )
+                                const SessionSettings& settings ) QF_THROW( ConfigError )
 : Acceptor( application, factory, settings ),
   m_pServer( 0 ) {}
 
 SocketAcceptor::SocketAcceptor( Application& application,
                                 MessageStoreFactory& factory,
                                 const SessionSettings& settings,
-                                LogFactory& logFactory ) throw( ConfigError )
+                                LogFactory& logFactory ) QF_THROW( ConfigError )
 : Acceptor( application, factory, settings, logFactory ),
   m_pServer( 0 ) 
 {
@@ -54,7 +54,7 @@ SocketAcceptor::~SocketAcceptor()
 }
 
 void SocketAcceptor::onConfigure( const SessionSettings& s )
-throw ( ConfigError )
+QF_THROW( ConfigError )
 {
   std::set<SessionID> sessions = s.getSessions();
   std::set<SessionID>::iterator i;
@@ -70,7 +70,7 @@ throw ( ConfigError )
 }
 
 void SocketAcceptor::onInitialize( const SessionSettings& s )
-throw ( RuntimeError )
+QF_THROW( RuntimeError )
 {
   short port = 0;
 

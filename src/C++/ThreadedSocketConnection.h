@@ -60,7 +60,7 @@ public:
   bool read();
 
 private:
-  bool readMessage( std::string& msg ) throw( SocketRecvFailed );
+  bool readMessage( std::string& msg ) QF_THROW( SocketRecvFailed );
   void processStream();
   bool send( const std::string& );
   bool setSession( const std::string& msg );

@@ -41,9 +41,9 @@ public:
 
   bool extractLength( int& length, std::string::size_type& pos,
                       const std::string& buffer )
-  throw ( MessageParseError );
+  QF_THROW( MessageParseError );
   bool readFixMessage( std::string& str )
-  throw ( MessageParseError );
+  QF_THROW( MessageParseError );
 
   void addToStream( const char* str, size_t len )
   { m_buffer.append( str, len ); }

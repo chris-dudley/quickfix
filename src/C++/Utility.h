@@ -242,4 +242,13 @@ using std::strtol;
 using std::strerror;
 #endif
 
+// Dynamic throw declarations are deprecated as of c++11.
+#if __cplusplus >= 201103L && !defined USE_DYNAMIC_THROW
+  #define QF_THROW(...)
+  #define QF_NOTHROW noexcept(true)
+#else
+  #define QF_THROW(...) throw(__VA_ARGS__)
+  #define QF_NOTHROW throw()
+#endif
+
 #endif

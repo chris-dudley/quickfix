@@ -100,7 +100,7 @@ public:
     return m_rows[row][column];
   }
 
-  void throwException() throw( IOException )
+  void throwException() QF_THROW( IOException )
   {
     if( !success() )
       throw IOException( "Query failed [" + m_query + "] " + reason() );

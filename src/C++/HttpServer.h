@@ -37,17 +37,17 @@ namespace FIX
 class HttpServer : public SocketServer::Strategy
 {
 public:
-  HttpServer( const SessionSettings& ) throw( ConfigError );
+  HttpServer( const SessionSettings& ) QF_THROW( ConfigError );
 
-  static void startGlobal( const SessionSettings& ) throw ( ConfigError, RuntimeError );
+  static void startGlobal( const SessionSettings& ) QF_THROW( ConfigError, RuntimeError );
   static void stopGlobal();
 
-  void start() throw ( ConfigError, RuntimeError );
+  void start() QF_THROW( ConfigError, RuntimeError );
   void stop();
 
 private:
-  void onConfigure( const SessionSettings& ) throw ( ConfigError );
-  void onInitialize( const SessionSettings& ) throw ( RuntimeError );
+  void onConfigure( const SessionSettings& ) QF_THROW( ConfigError );
+  void onInitialize( const SessionSettings& ) QF_THROW( RuntimeError );
 
   void onStart();
   bool onPoll();

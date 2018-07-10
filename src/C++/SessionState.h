@@ -169,28 +169,28 @@ public:
   void clearQueue()
   { Locker l( m_mutex ); m_queue.clear(); }
 
-  bool set( int s, const std::string& m ) throw ( IOException )
+  bool set( int s, const std::string& m ) QF_THROW( IOException )
   { Locker l( m_mutex ); return m_pStore->set( s, m ); }
   void get( int b, int e, std::vector < std::string > &m ) const
-  throw ( IOException )
+  QF_THROW( IOException )
   { Locker l( m_mutex ); m_pStore->get( b, e, m ); }
-  int getNextSenderMsgSeqNum() const throw ( IOException )
+  int getNextSenderMsgSeqNum() const QF_THROW( IOException )
   { Locker l( m_mutex ); return m_pStore->getNextSenderMsgSeqNum(); }
-  int getNextTargetMsgSeqNum() const throw ( IOException )
+  int getNextTargetMsgSeqNum() const QF_THROW( IOException )
   { Locker l( m_mutex ); return m_pStore->getNextTargetMsgSeqNum(); }
-  void setNextSenderMsgSeqNum( int n ) throw ( IOException )
+  void setNextSenderMsgSeqNum( int n ) QF_THROW( IOException )
   { Locker l( m_mutex ); m_pStore->setNextSenderMsgSeqNum( n ); }
-  void setNextTargetMsgSeqNum( int n ) throw ( IOException )
+  void setNextTargetMsgSeqNum( int n ) QF_THROW( IOException )
   { Locker l( m_mutex ); m_pStore->setNextTargetMsgSeqNum( n ); }
-  void incrNextSenderMsgSeqNum() throw ( IOException )
+  void incrNextSenderMsgSeqNum() QF_THROW( IOException )
   { Locker l( m_mutex ); m_pStore->incrNextSenderMsgSeqNum(); }
-  void incrNextTargetMsgSeqNum() throw ( IOException )
+  void incrNextTargetMsgSeqNum() QF_THROW( IOException )
   { Locker l( m_mutex ); m_pStore->incrNextTargetMsgSeqNum(); }
-  UtcTimeStamp getCreationTime() const throw ( IOException )
+  UtcTimeStamp getCreationTime() const QF_THROW( IOException )
   { Locker l( m_mutex ); return m_pStore->getCreationTime(); }
-  void reset() throw ( IOException )
+  void reset() QF_THROW( IOException )
   { Locker l( m_mutex ); m_pStore->reset(); }
-  void refresh() throw ( IOException )
+  void refresh() QF_THROW( IOException )
   { Locker l( m_mutex ); m_pStore->refresh(); }
 
   void clear()

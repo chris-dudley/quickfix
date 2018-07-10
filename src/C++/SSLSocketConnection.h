@@ -180,7 +180,7 @@ private:
     Queue;
 
   bool isValidSession();
-  void readFromSocket() throw( SocketRecvFailed );
+  void readFromSocket() QF_THROW( SocketRecvFailed );
   bool readMessage( std::string& msg );
   void readMessages( SocketMonitor& s );
   bool send( const std::string& );

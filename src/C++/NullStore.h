@@ -60,33 +60,33 @@ class NullStore : public MessageStore
 public:
   NullStore() : m_nextSenderMsgSeqNum( 1 ), m_nextTargetMsgSeqNum( 1 ) {}
 
-  bool set( int, const std::string& ) throw ( IOException );
-  void get( int, int, std::vector < std::string > & ) const throw ( IOException );
+  bool set( int, const std::string& ) QF_THROW( IOException );
+  void get( int, int, std::vector < std::string > & ) const QF_THROW( IOException );
 
-  int getNextSenderMsgSeqNum() const throw ( IOException )
+  int getNextSenderMsgSeqNum() const QF_THROW( IOException )
   { return m_nextSenderMsgSeqNum; }
-  int getNextTargetMsgSeqNum() const throw ( IOException )
+  int getNextTargetMsgSeqNum() const QF_THROW( IOException )
   { return m_nextTargetMsgSeqNum; }
-  void setNextSenderMsgSeqNum( int value ) throw ( IOException )
+  void setNextSenderMsgSeqNum( int value ) QF_THROW( IOException )
   { m_nextSenderMsgSeqNum = value; }
-  void setNextTargetMsgSeqNum( int value ) throw ( IOException )
+  void setNextTargetMsgSeqNum( int value ) QF_THROW( IOException )
   { m_nextTargetMsgSeqNum = value; }
-  void incrNextSenderMsgSeqNum() throw ( IOException )
+  void incrNextSenderMsgSeqNum() QF_THROW( IOException )
   { ++m_nextSenderMsgSeqNum; }
-  void incrNextTargetMsgSeqNum() throw ( IOException )
+  void incrNextTargetMsgSeqNum() QF_THROW( IOException )
   { ++m_nextTargetMsgSeqNum; }
 
-  void setCreationTime( const UtcTimeStamp& creationTime ) throw ( IOException )
+  void setCreationTime( const UtcTimeStamp& creationTime ) QF_THROW( IOException )
   { m_creationTime = creationTime; }
-  UtcTimeStamp getCreationTime() const throw ( IOException )
+  UtcTimeStamp getCreationTime() const QF_THROW( IOException )
   { return m_creationTime; }
 
-  void reset() throw ( IOException )
+  void reset() QF_THROW( IOException )
   {
     m_nextSenderMsgSeqNum = 1; m_nextTargetMsgSeqNum = 1;
     m_creationTime.setCurrent();
   }
-  void refresh() throw ( IOException ) {}
+  void refresh() QF_THROW( IOException ) {}
 
 private:
   int m_nextSenderMsgSeqNum;

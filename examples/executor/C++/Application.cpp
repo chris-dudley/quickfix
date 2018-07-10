@@ -40,15 +40,15 @@ void Application::toAdmin( FIX::Message& message,
                            const FIX::SessionID& sessionID ) {}
 void Application::toApp( FIX::Message& message,
                          const FIX::SessionID& sessionID )
-throw( FIX::DoNotSend ) {}
+QF_THROW( FIX::DoNotSend ) {}
 
 void Application::fromAdmin( const FIX::Message& message,
                              const FIX::SessionID& sessionID )
-throw( FIX::FieldNotFound, FIX::IncorrectDataFormat, FIX::IncorrectTagValue, FIX::RejectLogon ) {}
+QF_THROW( FIX::FieldNotFound, FIX::IncorrectDataFormat, FIX::IncorrectTagValue, FIX::RejectLogon ) {}
 
 void Application::fromApp( const FIX::Message& message,
                            const FIX::SessionID& sessionID )
-throw( FIX::FieldNotFound, FIX::IncorrectDataFormat, FIX::IncorrectTagValue, FIX::UnsupportedMessageType )
+QF_THROW( FIX::FieldNotFound, FIX::IncorrectDataFormat, FIX::IncorrectTagValue, FIX::UnsupportedMessageType )
 { crack( message, sessionID ); }
 
 void Application::onMessage( const FIX40::NewOrderSingle& message,
