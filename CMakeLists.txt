@@ -18,7 +18,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
 include(QuickfixPlatformSettings)
 
 # Call cmake with-DHAVE_SSL=ON to compile with SSL. Similarly for others.
-option(HAVE_SSL "Build with SSL")
+option(HAVE_SSL "Build with SSL" ON)
 option(HAVE_MYSQL "Build with MySQL")
 option(HAVE_POSTGRESQL "Build with PostgreSQL")
 option(HAVE_PYTHON "Build with default Python version")

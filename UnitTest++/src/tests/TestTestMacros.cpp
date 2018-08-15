@@ -9,6 +9,14 @@
 
 using namespace UnitTest;
 
+// Destructors are implicitely noexcept in c++11, have to tag them noexcept(false) if
+// they can throw.
+#if __cplusplus >= 201103L
+  #define QF_CAN_THROW noexcept(false)
+#else
+  #define QF_CAN_THROW
+#endif
+
 namespace {
 
 TestList list1;
@@ -131,7 +139,7 @@ TEST(FixturesWithThrowingCtorsAreFailures)
 
 struct FixtureDtorThrows
 {
-	~FixtureDtorThrows() { throw "exception"; }
+	~FixtureDtorThrows() QF_CAN_THROW { throw "exception"; }
 };
 
 TestList throwingFixtureTestList2;
