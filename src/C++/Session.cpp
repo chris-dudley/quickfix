@@ -526,7 +526,7 @@ bool Session::send( Message& message, bool overwriteSendingTime )
 {
   message.getHeader().removeField( FIELD::PossDupFlag );
   message.getHeader().removeField( FIELD::OrigSendingTime );
-  return sendRaw( message, overwriteSendingTime );
+  return sendRaw( message, 0, overwriteSendingTime );
 }
 
 bool Session::sendRaw( Message& message, int num, bool overwriteSendingTime )
