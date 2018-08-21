@@ -111,7 +111,7 @@ void Session::insertOrigSendingTime( Header& header, const UtcTimeStamp& when )
   header.setField( OrigSendingTime(when, showMilliseconds ? m_timestampPrecision : 0) );
 }
 
-void Session::fill( Header& header )
+void Session::fill( Header& header, bool overwriteSendingTime )
 {
   UtcTimeStamp now;
   m_state.lastSentTime( now );
@@ -119,7 +119,9 @@ void Session::fill( Header& header )
   header.setField( m_sessionID.getSenderCompID() );
   header.setField( m_sessionID.getTargetCompID() );
   header.setField( MsgSeqNum( getExpectedSenderNum() ) );
-  insertSendingTime( header );
+  if (overwriteSendingTime || !header.isSetField(FIELD::SendingTime)) {
+    insertSendingTime( header );
+  }
 }
 
 void Session::next()
@@ -520,14 +522,14 @@ Message * Session::newMessage(const std::string & msgType) const
   return msg;
 }
 
-bool Session::send( Message& message )
+bool Session::send( Message& message, bool overwriteSendingTime )
 {
   message.getHeader().removeField( FIELD::PossDupFlag );
   message.getHeader().removeField( FIELD::OrigSendingTime );
-  return sendRaw( message );
+  return sendRaw( message, overwriteSendingTime );
 }
 
-bool Session::sendRaw( Message& message, int num )
+bool Session::sendRaw( Message& message, int num, bool overwriteSendingTime )
 {
   Locker l( m_mutex );
 
@@ -538,7 +540,7 @@ bool Session::sendRaw( Message& message, int num )
     MsgType msgType;
     header.getFieldIfSet(msgType);
 
-    fill( header );
+    fill( header, overwriteSendingTime );
     std::string messageString;
 
     if ( num )
