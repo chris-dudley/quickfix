@@ -135,10 +135,10 @@ class ThreadedSSLSocketAcceptor : public Acceptor
 
 public:
   ThreadedSSLSocketAcceptor(Application &, MessageStoreFactory &,
-                            const SessionSettings &) throw(ConfigError);
+                            const SessionSettings &) QF_THROW(ConfigError);
   ThreadedSSLSocketAcceptor(Application &, MessageStoreFactory &,
                             const SessionSettings &,
-                            LogFactory &) throw(ConfigError);
+                            LogFactory &) QF_THROW(ConfigError);
 
   virtual ~ThreadedSSLSocketAcceptor();
 
@@ -183,8 +183,8 @@ private:
   typedef std::pair< int, SSL * > SocketKey;
   typedef std::map< SocketKey, thread_id > SocketToThread;
 
-  void onConfigure(const SessionSettings &) throw(ConfigError);
-  void onInitialize(const SessionSettings &) throw(RuntimeError);
+  void onConfigure(const SessionSettings &) QF_THROW(ConfigError);
+  void onInitialize(const SessionSettings &) QF_THROW(RuntimeError);
 
   void onStart();
   bool onPoll(double timeout);
