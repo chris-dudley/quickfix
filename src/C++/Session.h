@@ -214,7 +214,7 @@ public:
     m_pResponder = pR;
   }
 
-  bool send( Message&, bool overwriteSendingTime = true );
+  bool send( Message& );
   void next();
   void next( const UtcTimeStamp& timeStamp );
   void next( const std::string&, const UtcTimeStamp& timeStamp, bool queued = false );
@@ -235,14 +235,14 @@ private:
   static void removeSession( Session& );
 
   bool send( const std::string& );
-  bool sendRaw( Message&, int msgSeqNum = 0, bool overwriteSendingTime = true );
+  bool sendRaw( Message&, int msgSeqNum = 0 );
   bool resend( Message& message );
   void persist( const Message&, const std::string& ) QF_THROW( IOException );
 
   void insertSendingTime( Header& );
   void insertOrigSendingTime( Header&,
                               const UtcTimeStamp& when = UtcTimeStamp () );
-  void fill( Header&, bool overwriteSendingTime = true );
+  void fill( Header& );
 
   bool isGoodTime( const SendingTime& sendingTime )
   {
